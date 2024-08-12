@@ -1,0 +1,375 @@
+// Variables
+$primary-color: #fc036b;
+$secondary-color: #49497e;
+$text-color: #7c7c7c;
+$background-color: #FAFAFA;
+$button-text-color: #ffffff;
+$font-family: 'Poppins', sans-serif;
+
+// Importación de la fuente
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+// Mixins
+@mixin transition($property, $duration, $ease) {
+    transition: $property $duration $ease;
+}
+
+@mixin responsive($property, $mobile, $desktop) {
+    #{$property}: $mobile;
+    @media (min-width: 850px) {
+        #{$property}: $desktop;
+    }
+}
+
+// Global Styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    overflow-x: hidden;
+    font-family: $font-family;
+    height: 100%;
+    color: $text-color;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.active {
+    color: $primary-color;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+// Navbar
+.navbar {
+    background-color: #ffffff;
+    padding: 20px;
+
+    .logo {
+        max-width: 100%;
+        height: 30px;
+    }
+
+    .navbar-nav .nav-link {
+        color: $secondary-color;
+        margin: 0 15px;
+    }
+
+    .ctn {
+        background-color: $primary-color;
+        border-radius: 30px;
+        color: $button-text-color;
+        padding: 10px 20px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        @include transition(background-color, 0.3s, ease);
+
+        &:hover {
+            background-color: $background-color;
+            color: $primary-color;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+// Header Section
+.header {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/header-bg.png");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .header-content {
+        text-align: center;
+        color: #FAFAFA;
+        margin-bottom: 0;
+
+        h2 {
+            font-size: 4vmin;
+            color: #FAFAFA;
+        }
+
+        .line {
+            width: 150px;
+            height: 4px;
+            background: $primary-color;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 7vmin;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+            color: #FAFAFA;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+// Servicios Section
+section {
+    width: 80%;
+    margin: 80px auto;
+
+    .title {
+        text-align: center;
+        font-size: 4vmin;
+        color: $secondary-color;
+    }
+
+    .row .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h4 {
+        font-size: 3vmin;
+        color: $secondary-color;
+        margin: 20px auto;
+    }
+
+    p {
+        color: $text-color;
+        padding: 0px 40px;
+    }
+
+    .servicios-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        .servicio-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+// Portafolio Section
+.portafolio {
+    padding: 5rem 0;
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+// Footer
+.footer {
+    background: $secondary-color;
+    color: $button-text-color;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+// Responsive Design
+@media only screen and (max-width: 1200px) {
+    .servicios-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .navbar {
+        padding: 0;
+
+        .logo {
+            width: 90px;
+            height: auto;
+        }
+
+        .navbar-nav {
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            background: $background-color;
+            margin-top: -900px;
+            transition: all 0.5s ease;
+
+            li {
+                margin: 30px auto;
+            }
+        }
+    }
+
+    .row {
+        flex-direction: column;
+
+        .col {
+            margin: 20px auto;
+        }
+
+        .nosotros-content {
+            width: 100%;
+        }
+    }
+
+    .servicios-grid, .image-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .image-gallery img {
+        width: 90%;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+}
+
+// Additional Styles
+li:hover {
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.map-container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+    .map-iframe {
+        border: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.btn {
+    background-color: #fc036b; 
+    color: #ffffff; 
+    padding: 10px 20px; 
+    border-radius: 30px;
+    border: none; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.btn:hover {
+    background-color: #ffffff; 
+    color: #fc036b; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+} 
+
+.menu-btn {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fc036b;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+@media only screen and (max-width: 850px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+}
+
+/* Galería de imágenes en Portafolio */
+@media only screen and (max-width: 850px) {
+    .image-gallery {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  
+    .image-gallery img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* Sección de Servicios en Ideas */
+  @media only screen and (max-width: 850px) {
+    .servicios-grid {
+      grid-template-columns: 1fr;
+      
+      gap: 1rem;
+    }
+
+    .servicio-item img {
+    width: 100%;
+    height: auto;
+    }
+}
+  
